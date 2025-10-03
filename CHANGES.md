@@ -12,6 +12,7 @@ Changes:
 
 Fixes:
 - Modifies rendering of AhocorasickTokenizer parameter in API docs II
+- Removed star-pagination markers from extracted text #293
 
 ## Current
 

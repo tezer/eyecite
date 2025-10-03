@@ -828,7 +828,14 @@ class FindTest(TestCase):
             # Fix for index error when searching for case name
             ("<p>State v. Luna-Benitez (S53965). Alternative writ issued, dismissed, 342 Or 255</p>",
             [case_citation(volume="342", reporter="Or", page="255")],
-            {'clean_steps': ['html', 'inline_whitespace']})
+            {'clean_steps': ['html', 'inline_whitespace']}),
+            # Test remove text with star-pagination class
+            ("<p>The somewhat similar cases of <i>Crane</i> v. <i>Hyde Park,</i> 135 <span class=\"star-pagination\">*355</span> Mass. 147, and <i>Mahoning County</i> v. <i>Young,</i> 16 U.S. App. 253, also cited by the defendant, likewise turned upon a question of forfeiture for breach of a condition subsequent in a deed to a municipal corporation.</p>",
+             [case_citation(volume="135", reporter="Mass.", page="147",
+                            metadata={"plaintiff": "Crane",
+                                      "defendant": "Hyde Park"}
+                            )],
+             {'clean_steps': ['html', 'inline_whitespace']})
         )
 
         # fmt: on
